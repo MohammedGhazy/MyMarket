@@ -5,26 +5,28 @@
 //  Created by Mohamed Ghazy on 4/24/21.
 //  Copyright © 2021 Mohamed Ghazy. All rights reserved.
 //
-
 import UIKit
+import SafariServices
 
-class UIViewController_Ext: UIViewController {
+fileprivate var containerView: UIView!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+extension UIViewController{
+    
+    func presentGFAlertOnMainThread(title: String, message: String, buttonTitle: String) {
+        DispatchQueue.main.async {
+            let alertVC = GFAlertVC(title: title, message: message, buttonTitle: buttonTitle)
+            alertVC.modalPresentationStyle  = .overFullScreen
+            alertVC.modalTransitionStyle    = .crossDissolve
+            self.present(alertVC, animated: true)
+            
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func makeSafariVC(with url: URL) {
+        let safariVC    = SFSafariViewController(url: url)
+        
+        safariVC.preferredControlTintColor = .systemGreen
+        present(safariVC, animated: true)
     }
-    */
-
+    
 }
