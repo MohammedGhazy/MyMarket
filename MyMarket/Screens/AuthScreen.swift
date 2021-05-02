@@ -154,11 +154,10 @@ class AuthScreen: UIViewController {
     }
     
     @objc func pushToHomeScreen(){
-        let tabBarVC = TabBarVC()
-        tabBarVC.modalPresentationStyle = .fullScreen
-        navigationController?.present(tabBarVC, animated: true, completion: nil)
+            let tabBarVC = TabBarVC()
+            tabBarVC.modalPresentationStyle = .fullScreen
+            navigationController?.present(tabBarVC, animated: true, completion: nil)
     }
-    
     //----------------------------toolBar----------------------------------------------//
     func createToolBar() -> UIToolbar{
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100, height: 50))

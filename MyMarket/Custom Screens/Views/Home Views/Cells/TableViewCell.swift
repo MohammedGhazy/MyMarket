@@ -16,7 +16,9 @@ protocol CollectionViewCellDelegate: class {
 class TableViewCell: UITableViewCell {
     
     var rowWithImages: [CollectionViewCellModel] = []
+    
     weak var cellDelegate: CollectionViewCellDelegate?
+    
     var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
@@ -31,6 +33,7 @@ class TableViewCell: UITableViewCell {
     }()
     
     let titleLabel  = GFTitleLabel(txtAlignment: .left, fontSize: 22)
+    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

@@ -30,6 +30,7 @@ class GFSecandryTitleLabel: UILabel {
         adjustsFontSizeToFitWidth   = true
         minimumScaleFactor          = 0.90
         lineBreakMode               = .byTruncatingTail
+        numberOfLines               = 3
         translatesAutoresizingMaskIntoConstraints = false
         
     }
