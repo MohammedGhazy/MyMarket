@@ -75,8 +75,8 @@ extension HomeScreen: iCarouselDataSource{
 extension HomeScreen: UITableViewDelegate,UITableViewDataSource,CollectionViewCellDelegate{
     func collectionView(collectionviewcell: CollectionViewCell?, index: Int, didTappedInTableViewCell: TableViewCell) {
         let descVC   = DescriptionScreen()
-        let vm       = imagesArray.objectsArray[index].images
-        
+        let dataVM   = didTappedInTableViewCell.rowWithImages[index]
+        descVC.title = dataVM.bio
         descVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(descVC, animated: true)
     }
