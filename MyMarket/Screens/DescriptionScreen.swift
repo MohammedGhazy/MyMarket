@@ -7,9 +7,11 @@
 //
 
 import UIKit
-
 class DescriptionScreen: UIViewController {
-        
+    let tabBar = TabBarVC()
+    var products: [Product] = []
+    var index: Int?
+    
     let containerView: UIView = {
         let containerView = UIView()
         containerView.backgroundColor       = .systemBackground
@@ -20,7 +22,7 @@ class DescriptionScreen: UIViewController {
     }()
     
     let imageView: UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView()
         imageView.layer.cornerRadius = 12
         imageView.clipsToBounds      = true
         //imageView.image              = UIImage(named: "vig1")
@@ -29,7 +31,6 @@ class DescriptionScreen: UIViewController {
     
     let secondaryLabel = GFSecandryTitleLabel(fontSize: 18)
     let titleLabel     = GFTitleLabel(txtAlignment: .left, fontSize: 20)
-    let txtField       = GFTextField(placeholder: "how many kilos", isSecure: false)
     let cartButton     = GFButton(color: .systemGreen, title: "Add to Cart")
     
     override func viewDidLoad() {
@@ -39,11 +40,12 @@ class DescriptionScreen: UIViewController {
     }
     
     func configureViews(){
+        cartButton.addTarget(self, action: #selector(buttonTapped), for: .touchDown)
+        
         view.addSubview(containerView)
         view.addSubview(secondaryLabel)
         view.addSubview(titleLabel)
         view.addSubview(cartButton)
-        view.addSubview(txtField)
         containerView.addSubview(imageView)
         
         containerView.translatesAutoresizingMaskIntoConstraints  = false
@@ -51,19 +53,19 @@ class DescriptionScreen: UIViewController {
         secondaryLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints     = false
         cartButton.translatesAutoresizingMaskIntoConstraints     = false
-        txtField.translatesAutoresizingMaskIntoConstraints       = false
         
         let padding:CGFloat = 8
+        
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
-            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            containerView.heightAnchor.constraint(equalToConstant: 160),
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            containerView.heightAnchor.constraint(equalToConstant: view.frame.height*0.4),
             
             imageView.topAnchor.constraint(equalTo: containerView.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: 160),
+            imageView.heightAnchor.constraint(equalToConstant: view.frame.height*0.4),
             
             titleLabel.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 12),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
@@ -75,14 +77,13 @@ class DescriptionScreen: UIViewController {
             secondaryLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             secondaryLabel.heightAnchor.constraint(equalToConstant: 24),
             
-            txtField.topAnchor.constraint(equalTo: secondaryLabel.bottomAnchor, constant: padding),
-            txtField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            txtField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            
             cartButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -padding),
             cartButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             cartButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
         ])
     }
-
+    
+    @objc func buttonTapped(){
+        tabBar.selectedIndex = 2
+    }
 }

@@ -15,7 +15,7 @@ protocol CollectionViewCellDelegate: class {
 
 class TableViewCell: UITableViewCell {
     
-    var rowWithImages: [CollectionViewCellModel] = []
+    var rowWithImages: [Product] = []
     
     weak var cellDelegate: CollectionViewCellDelegate?
     
@@ -70,7 +70,7 @@ class TableViewCell: UITableViewCell {
 
 extension TableViewCell:  UICollectionViewDelegate, UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
     
-    func updateCellWith(row: [CollectionViewCellModel]) {
+    func updateCellWith(row: [Product]) {
         self.rowWithImages = row
         self.collectionView.reloadData()
     }

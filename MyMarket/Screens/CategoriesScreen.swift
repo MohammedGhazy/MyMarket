@@ -13,7 +13,7 @@ class CategoriesScreen: UIViewController {
     let tableView     = UITableView()
     var imagesArray   = Images()
     let reuseId = "TableViewCell"
-    var rowWithImages: [CollectionViewCellModel] = []
+    var rowWithImages: [Product] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +43,9 @@ extension CategoriesScreen: UITableViewDelegate,UITableViewDataSource,Collection
         descVC.title = dataVM.name
         descVC.imageView.image     = dataVM.image
         descVC.secondaryLabel.text = dataVM.bio
-        descVC.titleLabel.text     = "\(dataVM.prise)LE  per Kg"
+        descVC.titleLabel.text     = "\(dataVM.price)LE  per Kg"
+        descVC.index               = index
+        print(index)
         descVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(descVC, animated: true)
     }
